@@ -87,7 +87,7 @@ export async function POST(request: NextRequest) {
     
     // Search pipeline guests (host_name, podcast_name, notes)
     const guests = await supabaseRequest<PodcastGuest[]>({
-      table: 'podcast_guests',
+      table: 'podcast_guesting',
       method: 'GET',
       query: `select=*&or=(host_name.ilike.*${encodeURIComponent(searchTerm)}*,podcast_name.ilike.*${encodeURIComponent(searchTerm)}*,notes.ilike.*${encodeURIComponent(searchTerm)}*)&limit=20`,
     });
