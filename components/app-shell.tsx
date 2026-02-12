@@ -13,7 +13,7 @@ import { ImageGallery } from './gallery/image-gallery';
 import { KanbanBoard } from './kanban/kanban-board';
 import { PipelineBoard } from './pipeline/pipeline-board';
 import { RevenueDashboard } from './revenue/revenue-dashboard';
-import { WorkflowCanvas } from './workflow/workflow-canvas';
+import { SubwayMap } from './workflow/subway-map';
 import { GlobalSearch } from './global-search';
 import { Menu, X, FolderOpen, LayoutGrid, DollarSign, Mic, GitBranch, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -157,7 +157,7 @@ export function AppShell() {
           ) : viewMode === 'revenue' ? (
             <RevenueDashboard />
           ) : (
-            <WorkflowCanvas />
+            <SubwayMap />
           )}
         </div>
       </div>

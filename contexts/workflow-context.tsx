@@ -1,13 +1,22 @@
 'use client';
 
 import React, { createContext, useContext, useReducer, useCallback, useEffect } from 'react';
-import type { WorkflowState, WorkflowAction, Lane, WorkflowNode, WorkflowEdge, WorkflowStep } from '@/lib/types';
+import type {
+  WorkflowState,
+  WorkflowAction,
+  Lane,
+  WorkflowNode,
+  WorkflowEdge,
+  WorkflowStep,
+  WorkflowProcess,
+} from '@/lib/types';
 import * as api from '@/lib/workflow-client';
 
 const initialState: WorkflowState = {
   lanes: [],
   nodes: [],
   edges: [],
+  processes: [],
   steps: [],
   stepsByNode: {},
   loading: false,
@@ -34,6 +43,7 @@ function workflowReducer(state: WorkflowState, action: WorkflowAction): Workflow
         lanes: action.lanes,
         nodes: action.nodes,
         edges: action.edges,
+        processes: action.processes,
         steps: action.steps,
         stepsByNode: groupSteps(action.steps),
         loading: false,
@@ -50,7 +60,13 @@ function workflowReducer(state: WorkflowState, action: WorkflowAction): Workflow
 interface WorkflowContextType {
   state: WorkflowState;
   loadWorkflows: () => Promise<void>;
-  setData: (lanes: Lane[], nodes: WorkflowNode[], edges: WorkflowEdge[], steps: WorkflowStep[]) => void;
+  setData: (
+    lanes: Lane[],
+    nodes: WorkflowNode[],
+    edges: WorkflowEdge[],
+    processes: WorkflowProcess[],
+    steps: WorkflowStep[]
+  ) => void;
 }
 
 const WorkflowContext = createContext<WorkflowContextType | null>(null);
@@ -63,15 +79,31 @@ export function WorkflowProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'SET_ERROR', error: null });
     try {
       const data = await api.listWorkflows();
-      dispatch({ type: 'SET_DATA', lanes: data.lanes, nodes: data.nodes, edges: data.edges, steps: data.steps });
+      dispatch({
+        type: 'SET_DATA',
+        lanes: data.lanes,
+        nodes: data.nodes,
+        edges: data.edges,
+        processes: data.processes,
+        steps: data.steps,
+      });
     } catch (err) {
       dispatch({ type: 'SET_ERROR', error: err instanceof Error ? err.message : 'Failed to load workflows' });
     }
   }, []);
 
-  const setData = useCallback((lanes: Lane[], nodes: WorkflowNode[], edges: WorkflowEdge[], steps: WorkflowStep[]) => {
-    dispatch({ type: 'SET_DATA', lanes, nodes, edges, steps });
-  }, []);
+  const setData = useCallback(
+    (
+      lanes: Lane[],
+      nodes: WorkflowNode[],
+      edges: WorkflowEdge[],
+      processes: WorkflowProcess[],
+      steps: WorkflowStep[]
+    ) => {
+      dispatch({ type: 'SET_DATA', lanes, nodes, edges, processes, steps });
+    },
+    []
+  );
 
   useEffect(() => {
     loadWorkflows();

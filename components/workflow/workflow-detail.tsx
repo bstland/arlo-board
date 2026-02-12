@@ -1,7 +1,22 @@
 'use client';
 
 import type { Lane, WorkflowNode, WorkflowStep, StepType } from '@/lib/types';
-import { X, Clock, Sparkles, Hand, Globe, Zap, Cog, GitBranch, FileOutput, Send } from 'lucide-react';
+import {
+  X,
+  Clock,
+  Sparkles,
+  Hand,
+  Globe,
+  Zap,
+  Cog,
+  GitBranch,
+  FileOutput,
+  Send,
+  Gauge,
+  Bot,
+  SquareDot,
+  Flag,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const NODE_ICON = {
@@ -9,6 +24,16 @@ const NODE_ICON = {
   skill: Sparkles,
   manual: Hand,
   external: Globe,
+  trigger_time: Clock,
+  trigger_event: Zap,
+  trigger_condition: Gauge,
+  trigger_manual: Hand,
+  tool: SquareDot,
+  actor: Bot,
+  decision: GitBranch,
+  output: FileOutput,
+  delivery: Send,
+  end: Flag,
 };
 
 const NODE_LABEL: Record<WorkflowNode['node_type'], string> = {
@@ -16,6 +41,16 @@ const NODE_LABEL: Record<WorkflowNode['node_type'], string> = {
   skill: 'Skill',
   manual: 'Manual',
   external: 'External',
+  trigger_time: 'Time Trigger',
+  trigger_event: 'Event Trigger',
+  trigger_condition: 'Condition Trigger',
+  trigger_manual: 'Manual Trigger',
+  tool: 'Tool',
+  actor: 'Actor',
+  decision: 'Decision',
+  output: 'Output',
+  delivery: 'Delivery',
+  end: 'End',
 };
 
 const STEP_ICON: Record<StepType, typeof Zap> = {

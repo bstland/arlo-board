@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { supabaseRequest } from '@/lib/supabase';
-import type { Lane, WorkflowNode, WorkflowEdge, WorkflowStep } from '@/lib/types';
+import type { Lane, WorkflowNode, WorkflowEdge, WorkflowStep, WorkflowProcess } from '@/lib/types';
 
 export async function GET() {
   try {
@@ -22,13 +22,19 @@ export async function GET() {
       query: 'select=*',
     });
 
+    const processes = await supabaseRequest<WorkflowProcess[]>({
+      table: 'workflow_processes',
+      method: 'GET',
+      query: 'select=*&order=name.asc',
+    });
+
     const steps = await supabaseRequest<WorkflowStep[]>({
       table: 'workflow_steps',
       method: 'GET',
       query: 'select=*&order=step_order.asc',
     });
 
-    return NextResponse.json({ lanes, nodes, edges, steps });
+    return NextResponse.json({ lanes, nodes, edges, processes, steps });
   } catch (error) {
     console.error('Workflow list error:', error);
     return NextResponse.json(

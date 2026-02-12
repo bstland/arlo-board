@@ -143,8 +143,24 @@ export type PipelineAction =
 
 // --- Workflow Types ---
 
-export type WorkflowNodeType = 'cron' | 'skill' | 'manual' | 'external';
+export type WorkflowNodeType =
+  | 'cron'
+  | 'skill'
+  | 'manual'
+  | 'external'
+  | 'trigger_time'
+  | 'trigger_event'
+  | 'trigger_condition'
+  | 'trigger_manual'
+  | 'tool'
+  | 'actor'
+  | 'decision'
+  | 'output'
+  | 'delivery'
+  | 'end';
 export type StepType = 'trigger' | 'process' | 'decision' | 'output' | 'delivery';
+export type WorkflowTriggerType = 'time' | 'event' | 'condition' | 'manual';
+export type WorkflowStatus = 'active' | 'disabled' | 'error';
 
 export interface Lane {
   id: string;
@@ -160,6 +176,8 @@ export interface WorkflowNode {
   schedule: string | null;
   description: string | null;
   node_type: WorkflowNodeType;
+  node_icon?: string | null;
+  shared?: boolean | null;
   position_x: number | null;
   position_y: number | null;
 }
@@ -169,6 +187,9 @@ export interface WorkflowEdge {
   source_id: string;
   target_id: string;
   label: string | null;
+  process_id?: string | null;
+  edge_color?: string | null;
+  edge_order?: number | null;
 }
 
 export interface WorkflowStep {
@@ -181,10 +202,23 @@ export interface WorkflowStep {
   step_type: StepType;
 }
 
+export interface WorkflowProcess {
+  id: string;
+  name: string;
+  description: string | null;
+  trigger_type: WorkflowTriggerType;
+  color: string;
+  schedule: string | null;
+  owner: string | null;
+  status: WorkflowStatus;
+  created_at: string;
+}
+
 export interface WorkflowState {
   lanes: Lane[];
   nodes: WorkflowNode[];
   edges: WorkflowEdge[];
+  processes: WorkflowProcess[];
   steps: WorkflowStep[];
   stepsByNode: Record<string, WorkflowStep[]>;
   loading: boolean;
@@ -192,6 +226,13 @@ export interface WorkflowState {
 }
 
 export type WorkflowAction =
-  | { type: 'SET_DATA'; lanes: Lane[]; nodes: WorkflowNode[]; edges: WorkflowEdge[]; steps: WorkflowStep[] }
+  | {
+      type: 'SET_DATA';
+      lanes: Lane[];
+      nodes: WorkflowNode[];
+      edges: WorkflowEdge[];
+      processes: WorkflowProcess[];
+      steps: WorkflowStep[];
+    }
   | { type: 'SET_LOADING'; loading: boolean }
   | { type: 'SET_ERROR'; error: string | null };

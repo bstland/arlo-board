@@ -1,4 +1,4 @@
-import type { Lane, WorkflowNode, WorkflowEdge, WorkflowStep } from './types';
+import type { Lane, WorkflowNode, WorkflowEdge, WorkflowStep, WorkflowProcess } from './types';
 
 async function apiGet<T>(endpoint: string): Promise<T> {
   const res = await fetch(endpoint, {
@@ -16,9 +16,14 @@ export async function listWorkflows(): Promise<{
   lanes: Lane[];
   nodes: WorkflowNode[];
   edges: WorkflowEdge[];
+  processes: WorkflowProcess[];
   steps: WorkflowStep[];
 }> {
-  return apiGet<{ lanes: Lane[]; nodes: WorkflowNode[]; edges: WorkflowEdge[]; steps: WorkflowStep[] }>(
-    '/api/workflow/list'
-  );
+  return apiGet<{
+    lanes: Lane[];
+    nodes: WorkflowNode[];
+    edges: WorkflowEdge[];
+    processes: WorkflowProcess[];
+    steps: WorkflowStep[];
+  }>('/api/workflow/list');
 }

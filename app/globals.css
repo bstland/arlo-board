@@ -121,3 +121,15 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+@keyframes subway-dash {
+  to {
+    stroke-dashoffset: -200;
+  }
+}
+
+.subway-flow-dots {
+  opacity: 0.65;
+  stroke-dashoffset: 0;
+  animation: subway-dash 9s linear infinite;
+}
