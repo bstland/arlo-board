@@ -149,8 +149,8 @@ export function TaskModal({ task, open, onClose }: TaskModalProps) {
     }
   };
 
-  const inputCls = 'w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] placeholder:text-gray-500';
-  const labelCls = 'block text-xs font-medium text-gray-600 mb-1';
+  const inputCls = 'w-full px-3 py-2 rounded-lg border border-[#313244] bg-[#313244] text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500 placeholder:text-gray-500';
+  const labelCls = 'block text-xs font-medium text-gray-400 mb-1';
 
   return (
     <Dialog open={open} onClose={onClose} title="Edit Task" className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
@@ -265,8 +265,8 @@ export function TaskModal({ task, open, onClose }: TaskModalProps) {
         </div>
 
         {/* ─── Comments Section ─── */}
-        <div className="border-t border-[var(--color-border)] pt-4">
-          <h4 className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-3">
+        <div className="border-t border-[#313244] pt-4">
+          <h4 className="flex items-center gap-2 text-sm font-semibold text-gray-300 mb-3">
             <MessageCircle size={16} />
             Comments
             {comments.length > 0 && (
@@ -291,19 +291,19 @@ export function TaskModal({ task, open, onClose }: TaskModalProps) {
                   when.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
                 const isArlo = c.author.toLowerCase() === 'arlo';
                 return (
-                  <div key={c.id} className="bg-[var(--color-surface)] rounded-lg px-3 py-2">
+                  <div key={c.id} className="bg-[#1e1e2e] rounded-lg px-3 py-2">
                     <div className="flex items-center justify-between mb-1">
                       <span
                         className={cn(
                           'text-[10px] font-bold uppercase px-1.5 py-0.5 rounded',
-                          isArlo ? 'bg-violet-500/20 text-[var(--color-primary)]' : 'bg-blue-500/20 text-[var(--color-primary)]'
+                          isArlo ? 'bg-violet-500/20 text-violet-400' : 'bg-blue-500/20 text-blue-400'
                         )}
                       >
                         {c.author}
                       </span>
                       <span className="text-[10px] text-gray-600">{ts}</span>
                     </div>
-                    <p className="text-sm text-[var(--color-text)] whitespace-pre-wrap leading-relaxed">{c.body}</p>
+                    <p className="text-sm text-gray-200 whitespace-pre-wrap leading-relaxed">{c.body}</p>
                   </div>
                 );
               })
@@ -316,7 +316,7 @@ export function TaskModal({ task, open, onClose }: TaskModalProps) {
             <select
               value={commentAuthor}
               onChange={e => setCommentAuthor(e.target.value)}
-              className="w-[80px] shrink-0 px-2 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] text-xs focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
+              className="w-[80px] shrink-0 px-2 py-2 rounded-lg border border-[#313244] bg-[#313244] text-gray-100 text-xs focus:outline-none focus:ring-2 focus:ring-violet-500"
             >
               <option value="Scott">Scott</option>
               <option value="Arlo">Arlo</option>
@@ -332,7 +332,7 @@ export function TaskModal({ task, open, onClose }: TaskModalProps) {
             <button
               onClick={handlePostComment}
               disabled={posting || !commentBody.trim()}
-              className="shrink-0 p-2 rounded-lg bg-[var(--color-accent)] hover:opacity-90 text-white disabled:opacity-40 transition-colors"
+              className="shrink-0 p-2 rounded-lg bg-violet-600 hover:bg-violet-700 text-white disabled:opacity-40 transition-colors"
               title="Post comment"
             >
               {posting ? <Loader2 size={16} className="animate-spin" /> : <Send size={16} />}
@@ -341,7 +341,7 @@ export function TaskModal({ task, open, onClose }: TaskModalProps) {
         </div>
 
         {/* Actions */}
-        <div className="flex items-center justify-between pt-2 border-t border-[var(--color-border)]">
+        <div className="flex items-center justify-between pt-2 border-t border-[#313244]">
           <button
             onClick={handleDelete}
             disabled={deleting}
@@ -349,7 +349,7 @@ export function TaskModal({ task, open, onClose }: TaskModalProps) {
               'flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
               confirmDelete
                 ? 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
-                : 'text-gray-600 hover:text-red-400 hover:bg-red-500/10'
+                : 'text-gray-400 hover:text-red-400 hover:bg-red-500/10'
             )}
           >
             {deleting ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}
@@ -358,14 +358,14 @@ export function TaskModal({ task, open, onClose }: TaskModalProps) {
           <div className="flex gap-2">
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-lg text-sm text-gray-600 hover:bg-[var(--color-surface)] transition-colors"
+              className="px-4 py-2 rounded-lg text-sm text-gray-400 hover:bg-[#313244] transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={handleSave}
               disabled={saving || !form.title.trim()}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-[var(--color-accent)] hover:opacity-90 text-white disabled:opacity-50 transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-violet-600 hover:bg-violet-700 text-white disabled:opacity-50 transition-colors"
             >
               {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
               Save

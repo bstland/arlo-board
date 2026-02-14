@@ -6,7 +6,7 @@ import { GripVertical, CalendarClock } from 'lucide-react';
 
 const SOURCE_BADGE: Record<PipelineSource, { label: string; cls: string }> = {
   inbound: { label: 'Inbound', cls: 'bg-green-500/20 text-green-400 border-green-500/30' },
-  outbound: { label: 'Outbound', cls: 'bg-blue-500/20 text-[var(--color-primary)] border-blue-500/30' },
+  outbound: { label: 'Outbound', cls: 'bg-blue-500/20 text-blue-400 border-blue-500/30' },
 };
 
 function formatFollowUp(nextActionDate: string | null) {
@@ -40,18 +40,18 @@ export function GuestCard({ guest, onClick, isDragging }: GuestCardProps) {
     <div
       onClick={onClick}
       className={cn(
-        'group bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-3 cursor-pointer',
-        'hover:border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-all duration-150',
+        'group bg-[#1e1e2e] border border-[#313244] rounded-lg p-3 cursor-pointer',
+        'hover:border-[#45475a] hover:bg-[#232336] transition-all duration-150',
         isDragging && 'shadow-xl shadow-blue-500/10 border-blue-500/40 rotate-[2deg] scale-105',
       )}
     >
       <div className="flex items-start gap-2 mb-2">
         <GripVertical size={14} className="text-gray-600 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
         <div className="flex-1 min-w-0">
-          <h4 className="text-sm font-semibold text-[var(--color-text)] leading-snug line-clamp-2">
+          <h4 className="text-sm font-semibold text-gray-100 leading-snug line-clamp-2">
             {guest.host_name}
           </h4>
-          <p className="text-xs text-gray-600 line-clamp-1">{guest.podcast_name}</p>
+          <p className="text-xs text-gray-400 line-clamp-1">{guest.podcast_name}</p>
         </div>
         {sourceMeta && (
           <span className={cn('text-[10px] font-semibold uppercase px-1.5 py-0.5 rounded border shrink-0', sourceMeta.cls)}>
@@ -70,7 +70,7 @@ export function GuestCard({ guest, onClick, isDragging }: GuestCardProps) {
           <span className="font-semibold">
             {recordingDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
           </span>
-          {guest.recording_time && <span className="text-gray-600">{guest.recording_time}</span>}
+          {guest.recording_time && <span className="text-gray-400">{guest.recording_time}</span>}
         </div>
       )}
 

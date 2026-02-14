@@ -34,10 +34,10 @@ export function FileTree({ onNewFile, onNewFolder, onRename, onDelete, onMove }:
     return (
       <div className="p-4 text-sm text-red-500">
         <p>Failed to load files</p>
-        <p className="text-xs mt-1 text-gray-600">{state.error}</p>
+        <p className="text-xs mt-1 text-gray-400">{state.error}</p>
         <button
           onClick={() => loadFolder('')}
-          className="mt-2 text-xs text-[var(--color-primary)] hover:text-[var(--color-primary)] underline"
+          className="mt-2 text-xs text-violet-500 hover:text-violet-400 underline"
         >
           Retry
         </button>
@@ -47,7 +47,7 @@ export function FileTree({ onNewFile, onNewFolder, onRename, onDelete, onMove }:
 
   if (rootEntries.length === 0) {
     return (
-      <div className="p-4 text-sm text-gray-600">
+      <div className="p-4 text-sm text-gray-400">
         No files found
       </div>
     );

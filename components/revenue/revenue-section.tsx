@@ -15,11 +15,11 @@ export function RevenueSection({ title, subtitle, data, className }: RevenueSect
   return (
     <div className={cn('space-y-3', className)}>
       <div>
-        <h3 className="text-sm font-semibold text-gray-900 dark:text-[var(--color-text)]">
+        <h3 className="text-sm font-semibold text-gray-900 dark:text-gray-100">
           {title}
         </h3>
         {subtitle && (
-          <p className="text-xs text-gray-500 dark:text-gray-600">{subtitle}</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400">{subtitle}</p>
         )}
         {data.error && (
           <p className="text-xs text-red-500 dark:text-red-400 mt-1">{data.error}</p>

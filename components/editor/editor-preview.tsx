@@ -11,15 +11,15 @@ import { FileText, Image as ImageIcon } from 'lucide-react';
 
 function WelcomeScreen() {
   return (
-    <div className="h-full flex items-center justify-center bg-white dark:bg-[var(--color-surface)]">
+    <div className="h-full flex items-center justify-center bg-white dark:bg-[#1e1e2e]">
       <div className="text-center space-y-4">
         <div className="flex justify-center">
           <div className="w-16 h-16 rounded-2xl bg-violet-100 dark:bg-violet-900/30 flex items-center justify-center">
-            <FileText size={32} className="text-[var(--color-primary)]" />
+            <FileText size={32} className="text-violet-500" />
           </div>
         </div>
-        <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-700">Arlo Board</h2>
-        <p className="text-sm text-gray-600 max-w-xs">
+        <h2 className="text-xl font-semibold text-gray-700 dark:text-gray-300">Arlo Board</h2>
+        <p className="text-sm text-gray-400 max-w-xs">
           Select a file from the sidebar to start editing.
           <br />
           Use <kbd className="px-1.5 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-xs">Ctrl+N</kbd> to create a new file.
@@ -52,7 +52,7 @@ export function EditorPreview() {
       <div className="flex-1 overflow-hidden flex">
         {/* Editor pane */}
         {(state.viewMode === 'edit' || state.viewMode === 'split') && (
-          <div className={`${state.viewMode === 'split' ? 'w-1/2 border-r border-gray-200 dark:border-[var(--color-border)]' : 'w-full'} h-full overflow-hidden`}>
+          <div className={`${state.viewMode === 'split' ? 'w-1/2 border-r border-gray-200 dark:border-[#313244]' : 'w-full'} h-full overflow-hidden`}>
             <MarkdownEditor
               content={state.content}
               onChange={setContent}
@@ -62,7 +62,7 @@ export function EditorPreview() {
 
         {/* Preview pane */}
         {(state.viewMode === 'preview' || state.viewMode === 'split') && (
-          <div className={`${state.viewMode === 'split' ? 'w-1/2' : 'w-full'} h-full overflow-hidden bg-white dark:bg-[var(--color-surface)]`}>
+          <div className={`${state.viewMode === 'split' ? 'w-1/2' : 'w-full'} h-full overflow-hidden bg-white dark:bg-[#1e1e2e]`}>
             <MarkdownPreview
               content={state.content}
               basePath={state.filePath}

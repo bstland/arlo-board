@@ -2,15 +2,15 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* Catppuccin Mocha-inspired dark theme base */
 :root {
-  --color-primary: #4A6FA5;
-  --color-accent: #CC5500;
-  --color-text: #2C3E50;
-  --color-background: #FFFFFF;
-  --color-surface: #F5F5F5;
-  --color-border: #E0E0E0;
-  --background: var(--color-background);
-  --foreground: var(--color-text);
+  --background: #ffffff;
+  --foreground: #1e1e2e;
+}
+
+.dark {
+  --background: #1e1e2e;
+  --foreground: #cdd6f4;
 }
 
 html, body {
@@ -40,8 +40,16 @@ body {
   border-radius: 4px;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: #45475a;
+}
+
 ::-webkit-scrollbar-thumb:hover {
   background: #808080;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #585b70;
 }
 
 /* Toast animation */
@@ -69,6 +77,12 @@ body {
   overflow: auto !important;
 }
 
+/* Highlight.js theme overrides for dark mode */
+.dark .hljs {
+  background: #181825 !important;
+  color: #cdd6f4;
+}
+
 /* Prose tweaks */
 .prose pre {
   margin: 1em 0;
@@ -81,7 +95,11 @@ body {
 
 /* Selection colors */
 ::selection {
-  background: color-mix(in srgb, var(--color-primary) 25%, white);
+  background: #ddd6fe;
+}
+
+.dark ::selection {
+  background: #45475a;
 }
 
 /* Kanban drag placeholder */

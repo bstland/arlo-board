@@ -47,7 +47,7 @@ function LaneNode({ data }: NodeProps<LaneNodeType>) {
         backgroundColor: hexToRgba(data.color, 0.1),
       }}
     >
-      <div className="absolute left-4 top-3 text-xs font-semibold uppercase tracking-wide text-gray-600">
+      <div className="absolute left-4 top-3 text-xs font-semibold uppercase tracking-wide text-gray-400">
         {data.label}
       </div>
     </div>
@@ -202,8 +202,8 @@ export function WorkflowCanvas() {
         style: { stroke: '#6c7086' },
         labelBgPadding: [6, 3],
         labelBgBorderRadius: 6,
-        labelBgStyle: { fill: 'var(--color-surface)', color: 'var(--color-text)' },
-        labelStyle: { fill: 'var(--color-text)', fontSize: 11 },
+        labelBgStyle: { fill: '#1e1e2e', color: '#cdd6f4' },
+        labelStyle: { fill: '#cdd6f4', fontSize: 11 },
       }));
 
     return { flowNodes: [...sizedLaneNodes, ...workflowNodes], flowEdges };
@@ -244,8 +244,8 @@ export function WorkflowCanvas() {
     return (
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center space-y-3">
-          <Loader2 size={32} className="animate-spin text-[var(--color-primary)] mx-auto" />
-          <p className="text-sm text-gray-600">Loading workflows…</p>
+          <Loader2 size={32} className="animate-spin text-violet-500 mx-auto" />
+          <p className="text-sm text-gray-400">Loading workflows…</p>
         </div>
       </div>
     );
@@ -259,7 +259,7 @@ export function WorkflowCanvas() {
           <p className="text-sm text-red-400">{state.error}</p>
           <button
             onClick={handleRefresh}
-            className="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary)] underline"
+            className="text-sm text-violet-400 hover:text-violet-300 underline"
           >
             Try again
           </button>
@@ -270,9 +270,9 @@ export function WorkflowCanvas() {
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)] shrink-0">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[#313244] shrink-0">
         <div className="flex items-center gap-3">
-          <h2 className="text-lg font-bold text-[var(--color-text)]">Workflows</h2>
+          <h2 className="text-lg font-bold text-gray-100">Workflows</h2>
           <span className="text-xs text-gray-500">
             {filteredNodes.length} node{filteredNodes.length !== 1 ? 's' : ''}
           </span>
@@ -280,14 +280,14 @@ export function WorkflowCanvas() {
         <button
           onClick={handleRefresh}
           disabled={refreshing}
-          className="p-2 rounded-lg text-gray-600 hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors disabled:opacity-50"
+          className="p-2 rounded-lg text-gray-400 hover:text-gray-200 hover:bg-[#313244] transition-colors disabled:opacity-50"
           title="Refresh"
         >
           <RefreshCw size={16} className={cn(refreshing && 'animate-spin')} />
         </button>
       </div>
 
-      <div className="px-4 py-2 border-b border-[var(--color-border)] bg-[var(--color-surface)]">
+      <div className="px-4 py-2 border-b border-[#313244] bg-[#151522]">
         <div className="flex flex-wrap items-center gap-2">
           <span className="text-xs uppercase tracking-wide text-gray-500">Trigger</span>
           {TRIGGER_FILTERS.map(filter => (
@@ -297,8 +297,8 @@ export function WorkflowCanvas() {
               className={cn(
                 'text-xs font-medium px-2.5 py-1 rounded-full border transition-colors',
                 triggerFilter === filter.id
-                  ? 'bg-[var(--color-surface)] text-[var(--color-text)] border-[var(--color-border)]'
-                  : 'bg-transparent text-gray-600 border-[var(--color-border)] hover:text-[var(--color-text)] hover:border-[var(--color-border)]'
+                  ? 'bg-[#313244] text-gray-100 border-[#45475a]'
+                  : 'bg-transparent text-gray-400 border-[#313244] hover:text-gray-200 hover:border-[#45475a]'
               )}
             >
               {filter.label}
@@ -307,7 +307,7 @@ export function WorkflowCanvas() {
         </div>
       </div>
 
-      <div className="flex-1 relative bg-[var(--color-background)]">
+      <div className="flex-1 relative bg-[#0d0d1a]">
         <ReactFlow
           nodes={flowNodes}
           edges={flowEdges}
@@ -318,14 +318,14 @@ export function WorkflowCanvas() {
           maxZoom={1.5}
           panOnDrag
           nodesDraggable={false}
-          style={{ background: 'var(--color-background)' }}
+          style={{ background: '#0d0d1a' }}
         >
-          <Background color="var(--color-border)" gap={24} size={1} />
+          <Background color="#313244" gap={24} size={1} />
           <MiniMap
             pannable
             zoomable
             nodeColor={node => {
-              if (node.type === 'lane') return 'var(--color-border)';
+              if (node.type === 'lane') return '#313244';
               return '#45475a';
             }}
           />

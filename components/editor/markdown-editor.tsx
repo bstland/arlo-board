@@ -5,6 +5,7 @@ import { EditorView, keymap, lineNumbers, highlightActiveLine, drawSelection, hi
 import { EditorState, Extension } from '@codemirror/state';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { languages } from '@codemirror/language-data';
+import { oneDark } from '@codemirror/theme-one-dark';
 import { defaultKeymap, history, historyKeymap, indentWithTab } from '@codemirror/commands';
 import { closeBrackets, closeBracketsKeymap } from '@codemirror/autocomplete';
 import { syntaxHighlighting, defaultHighlightStyle, bracketMatching, indentOnInput } from '@codemirror/language';
@@ -18,8 +19,8 @@ interface MarkdownEditorProps {
 
 const lightTheme = EditorView.theme({
   '&': {
-    backgroundColor: 'var(--color-background)',
-    color: 'var(--color-text)',
+    backgroundColor: '#ffffff',
+    color: '#1e1e2e',
     height: '100%',
   },
   '.cm-content': {
@@ -29,28 +30,56 @@ const lightTheme = EditorView.theme({
     padding: '16px 0',
   },
   '.cm-gutters': {
-    backgroundColor: 'var(--color-surface)',
-    color: '#6b7280',
-    borderRight: '1px solid var(--color-border)',
+    backgroundColor: '#f8f9fa',
+    color: '#999',
+    borderRight: '1px solid #e5e7eb',
   },
   '.cm-activeLine': {
-    backgroundColor: 'var(--color-surface)',
+    backgroundColor: '#f0f0ff',
   },
   '.cm-activeLineGutter': {
-    backgroundColor: 'var(--color-surface)',
+    backgroundColor: '#f0f0ff',
   },
   '.cm-selectionBackground': {
-    backgroundColor: 'color-mix(in srgb, var(--color-primary) 20%, white) !important',
+    backgroundColor: '#ddd6fe !important',
   },
   '&.cm-focused .cm-selectionBackground': {
-    backgroundColor: 'color-mix(in srgb, var(--color-primary) 20%, white) !important',
+    backgroundColor: '#ddd6fe !important',
   },
   '.cm-cursor': {
-    borderLeftColor: 'var(--color-primary)',
+    borderLeftColor: '#7c3aed',
   },
 }, { dark: false });
 
-function getExtensions(onChange: (content: string) => void): Extension[] {
+const darkThemeExt = EditorView.theme({
+  '&': {
+    height: '100%',
+  },
+  '.cm-content': {
+    fontFamily: '"JetBrains Mono", "Fira Code", "SF Mono", Menlo, monospace',
+    fontSize: '14px',
+    lineHeight: '1.6',
+    padding: '16px 0',
+  },
+  '.cm-gutters': {
+    backgroundColor: '#181825',
+    borderRight: '1px solid #313244',
+  },
+  '.cm-activeLine': {
+    backgroundColor: '#1e1e2e',
+  },
+  '.cm-activeLineGutter': {
+    backgroundColor: '#1e1e2e',
+  },
+  '.cm-selectionBackground': {
+    backgroundColor: '#45475a !important',
+  },
+  '&.cm-focused .cm-selectionBackground': {
+    backgroundColor: '#45475a !important',
+  },
+}, { dark: true });
+
+function getExtensions(isDark: boolean, onChange: (content: string) => void): Extension[] {
   return [
     lineNumbers(),
     highlightActiveLine(),
@@ -75,15 +104,16 @@ function getExtensions(onChange: (content: string) => void): Extension[] {
       ...searchKeymap,
       indentWithTab,
     ]),
-    syntaxHighlighting(defaultHighlightStyle, { fallback: true }),
-    lightTheme,
+    ...(isDark
+      ? [oneDark, darkThemeExt]
+      : [syntaxHighlighting(defaultHighlightStyle, { fallback: true }), lightTheme]),
   ];
 }
 
 export function MarkdownEditor({ content, onChange }: MarkdownEditorProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const editorViewRef = useRef<EditorView | null>(null);
-  useTheme();
+  const { theme } = useTheme();
 
   // Create editor
   useEffect(() => {
@@ -92,7 +122,7 @@ export function MarkdownEditor({ content, onChange }: MarkdownEditorProps) {
     const view = new EditorView({
       state: EditorState.create({
         doc: content,
-        extensions: getExtensions(onChange),
+        extensions: getExtensions(theme === 'dark', onChange),
       }),
       parent: containerRef.current,
     });
@@ -104,7 +134,7 @@ export function MarkdownEditor({ content, onChange }: MarkdownEditorProps) {
       editorViewRef.current = null;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [theme]); // Recreate on theme change
 
   // Update content when file changes (not on typing)
   useEffect(() => {

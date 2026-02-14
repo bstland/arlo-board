@@ -13,12 +13,12 @@ import { WorkflowProvider } from '@/contexts/workflow-context';
 const AppShell = dynamic(() => import('@/components/app-shell').then(m => ({ default: m.AppShell })), {
   ssr: false,
   loading: () => (
-    <div className="h-screen flex items-center justify-center bg-[var(--color-surface)]">
+    <div className="h-screen flex items-center justify-center bg-[#1e1e2e]">
       <div className="text-center space-y-3">
         <div className="w-12 h-12 rounded-xl bg-violet-900/30 flex items-center justify-center mx-auto animate-pulse">
           <span className="text-2xl">📝</span>
         </div>
-        <p className="text-gray-600 text-sm">Loading Arlo Board…</p>
+        <p className="text-gray-400 text-sm">Loading Arlo Board…</p>
       </div>
     </div>
   ),

@@ -26,21 +26,21 @@ export function KanbanColumn({ status, tasks, onCardClick, onAddClick }: KanbanC
   return (
     <div className={cn(
       'flex flex-col min-w-[280px] w-[280px] lg:flex-1 lg:min-w-0 lg:w-auto',
-      'bg-[var(--color-surface)] rounded-xl border-t-2',
+      'bg-[#181825] rounded-xl border-t-2',
       meta.accent,
     )}>
       {/* Column header */}
-      <div className="flex items-center justify-between px-3 py-2.5 border-b border-[var(--color-border)]/50">
+      <div className="flex items-center justify-between px-3 py-2.5 border-b border-[#313244]/50">
         <div className="flex items-center gap-2">
           <span className="text-sm">{meta.icon}</span>
-          <h3 className="text-sm font-semibold text-[var(--color-text)]">{meta.label}</h3>
-          <span className="text-xs text-gray-500 bg-[var(--color-surface)] px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
+          <h3 className="text-sm font-semibold text-gray-200">{meta.label}</h3>
+          <span className="text-xs text-gray-500 bg-[#313244] px-1.5 py-0.5 rounded-full min-w-[20px] text-center">
             {tasks.length}
           </span>
         </div>
         <button
           onClick={onAddClick}
-          className="p-1 rounded-md text-gray-500 hover:text-[var(--color-primary)] hover:bg-[var(--color-surface)] transition-colors"
+          className="p-1 rounded-md text-gray-500 hover:text-violet-400 hover:bg-[#313244] transition-colors"
           title={`Add task to ${meta.label}`}
         >
           <Plus size={16} />

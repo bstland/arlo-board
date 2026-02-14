@@ -71,8 +71,8 @@ export function KanbanBoard() {
     return (
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center space-y-3">
-          <Loader2 size={32} className="animate-spin text-[var(--color-primary)] mx-auto" />
-          <p className="text-sm text-gray-600">Loading tasks…</p>
+          <Loader2 size={32} className="animate-spin text-violet-500 mx-auto" />
+          <p className="text-sm text-gray-400">Loading tasks…</p>
         </div>
       </div>
     );
@@ -87,7 +87,7 @@ export function KanbanBoard() {
           <p className="text-sm text-red-400">{state.error}</p>
           <button
             onClick={handleRefresh}
-            className="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary)] underline"
+            className="text-sm text-violet-400 hover:text-violet-300 underline"
           >
             Try again
           </button>
@@ -99,9 +99,9 @@ export function KanbanBoard() {
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
       {/* Board header */}
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)] shrink-0">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[#313244] shrink-0">
         <div className="flex items-center gap-3">
-          <h2 className="text-lg font-bold text-[var(--color-text)]">Board</h2>
+          <h2 className="text-lg font-bold text-gray-100">Board</h2>
           <span className="text-xs text-gray-500">
             {state.tasks.length} task{state.tasks.length !== 1 ? 's' : ''}
           </span>
@@ -110,14 +110,14 @@ export function KanbanBoard() {
           <button
             onClick={handleRefresh}
             disabled={refreshing}
-            className="p-2 rounded-lg text-gray-600 hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors disabled:opacity-50"
+            className="p-2 rounded-lg text-gray-400 hover:text-gray-200 hover:bg-[#313244] transition-colors disabled:opacity-50"
             title="Refresh"
           >
             <RefreshCw size={16} className={cn(refreshing && 'animate-spin')} />
           </button>
           <button
             onClick={() => handleAddClick('backlog')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-[var(--color-accent)] hover:opacity-90 text-white transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-medium bg-violet-600 hover:bg-violet-700 text-white transition-colors"
           >
             <Plus size={14} />
             <span className="hidden sm:inline">New Task</span>

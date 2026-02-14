@@ -43,7 +43,7 @@ export function ContextMenu({ x, y, isFolder, onClose, onNewFile, onNewFolder, o
   return (
     <div
       ref={menuRef}
-      className="fixed z-50 bg-white dark:bg-[var(--color-surface)] border border-gray-200 dark:border-[var(--color-border)] rounded-lg shadow-xl py-1 min-w-[160px]"
+      className="fixed z-50 bg-white dark:bg-[#1e1e2e] border border-gray-200 dark:border-[#313244] rounded-lg shadow-xl py-1 min-w-[160px]"
       style={{ left: x, top: y }}
     >
       {items.map((item, i) => (
@@ -54,7 +54,7 @@ export function ContextMenu({ x, y, isFolder, onClose, onNewFile, onNewFolder, o
             onClose();
           }}
           className={`flex items-center gap-2 w-full px-3 py-1.5 text-sm hover:bg-gray-100 dark:hover:bg-gray-800 ${
-            item.danger ? 'text-red-500 hover:text-red-600' : 'text-gray-700 dark:text-gray-700'
+            item.danger ? 'text-red-500 hover:text-red-600' : 'text-gray-700 dark:text-gray-300'
           }`}
         >
           <item.icon size={14} />

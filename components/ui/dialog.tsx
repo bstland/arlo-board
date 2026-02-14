@@ -32,12 +32,12 @@ export function Dialog({ open, onClose, title, children, className }: DialogProp
       <div
         ref={dialogRef}
         className={cn(
-          'relative bg-white dark:bg-[var(--color-surface)] rounded-xl shadow-2xl border border-gray-200 dark:border-[var(--color-border)] p-6 min-w-[400px] max-w-lg',
+          'relative bg-white dark:bg-[#1e1e2e] rounded-xl shadow-2xl border border-gray-200 dark:border-[#313244] p-6 min-w-[400px] max-w-lg',
           className
         )}
       >
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold text-gray-900 dark:text-[var(--color-text)]">{title}</h2>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{title}</h2>
           <button
             onClick={onClose}
             className="p-1 rounded-md hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"

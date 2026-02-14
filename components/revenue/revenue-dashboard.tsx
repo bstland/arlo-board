@@ -29,12 +29,12 @@ export function RevenueDashboard() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-lg bg-[var(--color-accent)] dark:bg-violet-500/20 flex items-center justify-center">
-              <TrendingUp size={18} className="text-white dark:text-[var(--color-primary)]" />
+            <div className="w-9 h-9 rounded-lg bg-violet-600 dark:bg-violet-500/20 flex items-center justify-center">
+              <TrendingUp size={18} className="text-white dark:text-violet-400" />
             </div>
             <div>
-              <h1 className="text-lg font-bold text-gray-900 dark:text-[var(--color-text)]">Revenue</h1>
-              <p className="text-xs text-gray-500 dark:text-gray-600">
+              <h1 className="text-lg font-bold text-gray-900 dark:text-gray-100">Revenue</h1>
+              <p className="text-xs text-gray-500 dark:text-gray-400">
                 Stripe revenue across all accounts
               </p>
             </div>
@@ -42,9 +42,9 @@ export function RevenueDashboard() {
 
           <div className="flex items-center gap-3">
             {/* Sync indicator */}
-            <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-500">
+            <div className="flex items-center gap-2 text-xs text-gray-400 dark:text-gray-500">
               {isSyncing && (
-                <Loader2 size={12} className="animate-spin text-[var(--color-primary)]" />
+                <Loader2 size={12} className="animate-spin text-violet-500" />
               )}
               {lastUpdated && (
                 <span>
@@ -64,8 +64,8 @@ export function RevenueDashboard() {
               disabled={isSyncing}
               className={cn(
                 'p-2 rounded-lg border transition-all duration-150',
-                'border-gray-200 dark:border-[var(--color-border)]',
-                'hover:bg-gray-100 dark:hover:bg-[var(--color-surface)]',
+                'border-gray-200 dark:border-[#313244]',
+                'hover:bg-gray-100 dark:hover:bg-[#313244]',
                 'disabled:opacity-50 disabled:cursor-not-allowed',
               )}
               title="Refresh revenue data"
@@ -73,7 +73,7 @@ export function RevenueDashboard() {
               <RefreshCw
                 size={14}
                 className={cn(
-                  'text-gray-500 dark:text-gray-600',
+                  'text-gray-500 dark:text-gray-400',
                   isSyncing && 'animate-spin',
                 )}
               />
@@ -82,8 +82,8 @@ export function RevenueDashboard() {
         </div>
 
         {/* Grand Totals */}
-        <div className="rounded-2xl bg-gray-900 dark:bg-[var(--color-surface)] p-6 space-y-4">
-          <h2 className="text-sm font-semibold text-gray-700 uppercase tracking-wider">
+        <div className="rounded-2xl bg-gray-900 dark:bg-[#11111b] p-6 space-y-4">
+          <h2 className="text-sm font-semibold text-gray-300 uppercase tracking-wider">
             Global Totals
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
@@ -102,7 +102,7 @@ export function RevenueDashboard() {
 
         {/* IP Consolidated — right after Landmodo */}
         <div className="rounded-xl border border-violet-200 dark:border-violet-500/20 bg-violet-50/50 dark:bg-violet-500/5 p-5 space-y-3">
-          <h3 className="text-sm font-semibold text-violet-700 dark:text-[var(--color-primary)]">
+          <h3 className="text-sm font-semibold text-violet-700 dark:text-violet-400">
             IP Consolidated
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -115,11 +115,11 @@ export function RevenueDashboard() {
         {/* IP Group Breakdown */}
         <div className="space-y-6">
           <div className="flex items-center gap-3">
-            <div className="h-px flex-1 bg-gray-200 dark:bg-[var(--color-surface)]" />
-            <span className="text-xs font-semibold text-gray-600 dark:text-gray-500 uppercase tracking-wider">
+            <div className="h-px flex-1 bg-gray-200 dark:bg-[#313244]" />
+            <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">
               Intellectual Property Group
             </span>
-            <div className="h-px flex-1 bg-gray-200 dark:bg-[var(--color-surface)]" />
+            <div className="h-px flex-1 bg-gray-200 dark:bg-[#313244]" />
           </div>
 
           <RevenueSection
