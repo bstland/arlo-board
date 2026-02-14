@@ -192,7 +192,7 @@ export function Sidebar({ onSearch }: SidebarProps) {
   };
 
   return (
-    <div className="h-full flex flex-col bg-gray-50 dark:bg-[#181825]">
+    <div className="h-full flex flex-col bg-gray-50 dark:bg-[var(--color-surface)]">
       <SidebarHeader
         onNewFile={() => handleNewFile()}
         onNewFolder={() => handleNewFolder()}
@@ -210,9 +210,9 @@ export function Sidebar({ onSearch }: SidebarProps) {
         />
       </div>
 
-      <div className="p-2 border-t border-gray-200 dark:border-[#313244] flex items-center justify-between">
+      <div className="p-2 border-t border-gray-200 dark:border-[var(--color-border)] flex items-center justify-between">
         <ThemeToggle />
-        <span className="text-xs text-gray-400">Arlo Board v2</span>
+        <span className="text-xs text-gray-600">Arlo Board v2</span>
       </div>
 
       {/* New File Dialog */}
@@ -224,13 +224,13 @@ export function Sidebar({ onSearch }: SidebarProps) {
           onKeyDown={e => handleKeyDown(e, submitNewFile)}
           placeholder="filename.md"
           autoFocus
-          className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-[#313244] bg-white dark:bg-[#313244] text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+          className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-[var(--color-border)] bg-white dark:bg-[var(--color-surface)] text-gray-900 dark:text-[var(--color-text)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
         />
         <div className="flex justify-end gap-2 mt-4">
           <button onClick={closeDialog} className="px-4 py-2 text-sm rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
             Cancel
           </button>
-          <button onClick={submitNewFile} className="px-4 py-2 text-sm rounded-lg bg-violet-600 text-white hover:bg-violet-700">
+          <button onClick={submitNewFile} className="px-4 py-2 text-sm rounded-lg bg-[var(--color-accent)] text-white hover:opacity-90">
             Create
           </button>
         </div>
@@ -245,13 +245,13 @@ export function Sidebar({ onSearch }: SidebarProps) {
           onKeyDown={e => handleKeyDown(e, submitNewFolder)}
           placeholder="folder-name"
           autoFocus
-          className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-[#313244] bg-white dark:bg-[#313244] text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+          className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-[var(--color-border)] bg-white dark:bg-[var(--color-surface)] text-gray-900 dark:text-[var(--color-text)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
         />
         <div className="flex justify-end gap-2 mt-4">
           <button onClick={closeDialog} className="px-4 py-2 text-sm rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
             Cancel
           </button>
-          <button onClick={submitNewFolder} className="px-4 py-2 text-sm rounded-lg bg-violet-600 text-white hover:bg-violet-700">
+          <button onClick={submitNewFolder} className="px-4 py-2 text-sm rounded-lg bg-[var(--color-accent)] text-white hover:opacity-90">
             Create
           </button>
         </div>
@@ -265,13 +265,13 @@ export function Sidebar({ onSearch }: SidebarProps) {
           onChange={e => setInputValue(e.target.value)}
           onKeyDown={e => handleKeyDown(e, submitRename)}
           autoFocus
-          className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-[#313244] bg-white dark:bg-[#313244] text-gray-900 dark:text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
+          className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-[var(--color-border)] bg-white dark:bg-[var(--color-surface)] text-gray-900 dark:text-[var(--color-text)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
         />
         <div className="flex justify-end gap-2 mt-4">
           <button onClick={closeDialog} className="px-4 py-2 text-sm rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700">
             Cancel
           </button>
-          <button onClick={submitRename} className="px-4 py-2 text-sm rounded-lg bg-violet-600 text-white hover:bg-violet-700">
+          <button onClick={submitRename} className="px-4 py-2 text-sm rounded-lg bg-[var(--color-accent)] text-white hover:opacity-90">
             Rename
           </button>
         </div>
@@ -279,7 +279,7 @@ export function Sidebar({ onSearch }: SidebarProps) {
 
       {/* Delete Confirmation */}
       <Dialog open={dialogType === 'delete'} onClose={closeDialog} title="Delete">
-        <p className="text-sm text-gray-600 dark:text-gray-300">
+        <p className="text-sm text-gray-600 dark:text-gray-700">
           Are you sure you want to delete <strong>{dialogEntry?.name}</strong>? This cannot be undone.
         </p>
         <div className="flex justify-end gap-2 mt-4">

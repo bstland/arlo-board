@@ -445,8 +445,8 @@ export function SubwayMap() {
     return (
       <div className="flex-1 flex items-center justify-center">
         <div className="text-center space-y-3">
-          <Loader2 size={32} className="animate-spin text-violet-400 mx-auto" />
-          <p className="text-sm text-gray-400">Loading subway map…</p>
+          <Loader2 size={32} className="animate-spin text-[var(--color-primary)] mx-auto" />
+          <p className="text-sm text-gray-600">Loading subway map…</p>
         </div>
       </div>
     );
@@ -460,7 +460,7 @@ export function SubwayMap() {
           <p className="text-sm text-red-400">{state.error}</p>
           <button
             onClick={handleRefresh}
-            className="text-sm text-violet-400 hover:text-violet-300 underline"
+            className="text-sm text-[var(--color-primary)] hover:text-[var(--color-primary)] underline"
           >
             Try again
           </button>
@@ -470,28 +470,28 @@ export function SubwayMap() {
   }
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden bg-[#0c0c16]">
-      <div className="flex items-center justify-between px-4 py-3 border-b border-[#27273b]">
+    <div className="flex-1 flex flex-col overflow-hidden bg-[var(--color-background)]">
+      <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
         <div className="flex items-center gap-3">
-          <h2 className="text-lg font-bold text-[#f0f0ff]">Workflow Subway</h2>
-          <span className="text-xs text-[#8b8fa8]">
+          <h2 className="text-lg font-bold text-[var(--color-text)]">Workflow Subway</h2>
+          <span className="text-xs text-gray-600">
             {visibleProcesses.length} line{visibleProcesses.length !== 1 ? 's' : ''}
           </span>
         </div>
         <button
           onClick={handleRefresh}
           disabled={refreshing}
-          className="p-2 rounded-lg text-gray-400 hover:text-gray-200 hover:bg-[#1e1e2e] transition-colors disabled:opacity-50"
+          className="p-2 rounded-lg text-gray-600 hover:text-[var(--color-text)] hover:bg-[var(--color-surface)] transition-colors disabled:opacity-50"
           title="Refresh"
         >
           <RefreshCw size={16} className={cn(refreshing && 'animate-spin')} />
         </button>
       </div>
 
-      <div className="px-4 py-3 border-b border-[#27273b] bg-[#141423]">
+      <div className="px-4 py-3 border-b border-[var(--color-border)] bg-[var(--color-surface)]">
         <div className="flex flex-wrap items-center gap-3">
           <div className="flex items-center gap-2">
-            <Filter size={14} className="text-[#7f849b]" />
+            <Filter size={14} className="text-gray-600" />
             {TRIGGER_FILTERS.map(filter => (
               <button
                 key={filter.id}
@@ -499,8 +499,8 @@ export function SubwayMap() {
                 className={cn(
                   'text-xs font-medium px-2.5 py-1 rounded-full border transition-colors',
                   triggerFilter === filter.id
-                    ? 'bg-[#27273b] text-[#f0f0ff] border-[#3a3a54]'
-                    : 'bg-transparent text-[#8b8fa8] border-[#27273b] hover:text-[#e5e7f5] hover:border-[#3a3a54]'
+                    ? 'bg-[var(--color-surface)] text-[var(--color-text)] border-[var(--color-border)]'
+                    : 'bg-transparent text-gray-600 border-[var(--color-border)] hover:text-[var(--color-text)] hover:border-[var(--color-border)]'
                 )}
               >
                 {filter.label}
@@ -509,11 +509,11 @@ export function SubwayMap() {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-[11px] uppercase tracking-wide text-[#6b6f86]">Owner</span>
+            <span className="text-[11px] uppercase tracking-wide text-gray-500">Owner</span>
             <select
               value={ownerFilter}
               onChange={event => setOwnerFilter(event.target.value)}
-              className="bg-[#1b1b2b] text-xs text-[#e5e7f5] border border-[#2b2b3f] rounded-md px-2 py-1"
+              className="bg-[var(--color-surface)] text-xs text-[var(--color-text)] border border-[var(--color-border)] rounded-md px-2 py-1"
             >
               <option value="all">All</option>
               {owners.map(owner => (
@@ -525,7 +525,7 @@ export function SubwayMap() {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-[11px] uppercase tracking-wide text-[#6b6f86]">Status</span>
+            <span className="text-[11px] uppercase tracking-wide text-gray-500">Status</span>
             {STATUS_FILTERS.map(filter => (
               <button
                 key={filter.id}
@@ -533,8 +533,8 @@ export function SubwayMap() {
                 className={cn(
                   'text-xs font-medium px-2.5 py-1 rounded-full border transition-colors',
                   statusFilter === filter.id
-                    ? 'bg-[#27273b] text-[#f0f0ff] border-[#3a3a54]'
-                    : 'bg-transparent text-[#8b8fa8] border-[#27273b] hover:text-[#e5e7f5] hover:border-[#3a3a54]'
+                    ? 'bg-[var(--color-surface)] text-[var(--color-text)] border-[var(--color-border)]'
+                    : 'bg-transparent text-gray-600 border-[var(--color-border)] hover:text-[var(--color-text)] hover:border-[var(--color-border)]'
                 )}
               >
                 {filter.label}
@@ -544,12 +544,12 @@ export function SubwayMap() {
 
           <div className="flex items-center gap-2 ml-auto">
             <div className="relative">
-              <Search size={14} className="absolute left-2 top-1/2 -translate-y-1/2 text-[#70748b]" />
+              <Search size={14} className="absolute left-2 top-1/2 -translate-y-1/2 text-gray-500" />
               <input
                 value={searchTerm}
                 onChange={event => setSearchTerm(event.target.value)}
                 placeholder="Search process or node"
-                className="bg-[#1b1b2b] text-xs text-[#e5e7f5] border border-[#2b2b3f] rounded-md pl-7 pr-2 py-1.5 w-48"
+                className="bg-[var(--color-surface)] text-xs text-[var(--color-text)] border border-[var(--color-border)] rounded-md pl-7 pr-2 py-1.5 w-48"
               />
             </div>
           </div>
@@ -571,7 +571,7 @@ export function SubwayMap() {
             maxZoom={1.7}
             panOnDrag
             nodesDraggable={false}
-            style={{ background: '#0c0c16' }}
+            style={{ background: 'var(--color-background)' }}
           >
             <Background color="#252538" gap={24} size={1} />
             <MiniMap
@@ -598,11 +598,11 @@ export function SubwayMap() {
           />
         </div>
 
-        <aside className="w-72 border-l border-[#27273b] bg-[#131321] p-4 overflow-y-auto">
+        <aside className="w-72 border-l border-[var(--color-border)] bg-[var(--color-surface)] p-4 overflow-y-auto">
           <div className="flex items-center justify-between mb-3">
             <div>
-              <div className="text-sm font-semibold text-[#f0f0ff]">Legend</div>
-              <div className="text-xs text-[#7f849b]">Toggle subway lines</div>
+              <div className="text-sm font-semibold text-[var(--color-text)]">Legend</div>
+              <div className="text-xs text-gray-600">Toggle subway lines</div>
             </div>
             {activeProcessId && (
               <button
@@ -625,14 +625,14 @@ export function SubwayMap() {
                   className={cn(
                     'w-full flex items-center gap-2 rounded-lg border px-2.5 py-2 text-left transition-colors',
                     isActive
-                      ? 'border-[#89b4fa]/70 bg-[#1b1b2d]'
-                      : 'border-[#24243a] bg-[#10101d] hover:border-[#343452]'
+                      ? 'border-[#89b4fa]/70 bg-[var(--color-surface)]'
+                      : 'border-[var(--color-border)] bg-[var(--color-surface)] hover:border-[var(--color-border)]'
                   )}
                 >
                   <span className="h-4 w-4 rounded-full" style={{ backgroundColor: process.color }} />
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-semibold text-[#e5e7f5] truncate">{process.name}</div>
-                    <div className="text-[10px] text-[#7f849b] truncate">
+                    <div className="text-xs font-semibold text-[var(--color-text)] truncate">{process.name}</div>
+                    <div className="text-[10px] text-gray-600 truncate">
                       {process.trigger_type} · {process.owner ?? 'Unassigned'}
                     </div>
                   </div>
@@ -644,8 +644,8 @@ export function SubwayMap() {
                     className={cn(
                       'h-6 w-6 flex items-center justify-center rounded border text-xs',
                       isVisible
-                        ? 'border-[#3a3a54] text-[#e5e7f5] bg-[#1a1a2a]'
-                        : 'border-[#2b2b3f] text-[#6b6f86] bg-transparent'
+                        ? 'border-[var(--color-border)] text-[var(--color-text)] bg-[var(--color-surface)]'
+                        : 'border-[var(--color-border)] text-gray-500 bg-transparent'
                     )}
                     aria-label={isVisible ? 'Hide process' : 'Show process'}
                   >
@@ -656,7 +656,7 @@ export function SubwayMap() {
             })}
 
             {filteredProcesses.length === 0 && (
-              <div className="text-xs text-[#7f849b] bg-[#10101d] border border-[#24243a] rounded-lg p-3">
+              <div className="text-xs text-gray-600 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-3">
                 No processes match your filters.
               </div>
             )}

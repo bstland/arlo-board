@@ -53,7 +53,7 @@ export function FileTreeNode({ entry, depth, onNewFile, onNewFolder, onRename, o
         onContextMenu={handleContextMenu}
         className={cn(
           'flex items-center gap-1.5 w-full px-2 py-1 text-sm text-left transition-colors',
-          'hover:bg-gray-100 dark:hover:bg-[#313244] rounded-sm',
+          'hover:bg-gray-100 dark:hover:bg-[var(--color-surface)] rounded-sm',
           isSelected && 'bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300',
           isEditing && !isSelected && 'bg-gray-50 dark:bg-gray-800/50'
         )}
@@ -62,18 +62,18 @@ export function FileTreeNode({ entry, depth, onNewFile, onNewFolder, onRename, o
       >
         {entry.type === 'folder' && (
           isLoading ? (
-            <Loader2 size={14} className="shrink-0 animate-spin text-gray-400" />
+            <Loader2 size={14} className="shrink-0 animate-spin text-gray-600" />
           ) : (
             <ChevronRight
               size={14}
-              className={cn('shrink-0 transition-transform text-gray-400', isExpanded && 'rotate-90')}
+              className={cn('shrink-0 transition-transform text-gray-600', isExpanded && 'rotate-90')}
             />
           )
         )}
         {entry.type === 'folder' ? (
           <FolderIcon open={isExpanded} />
         ) : (
-          <FileIcon extension={entry.extension} className="text-gray-400 ml-[14px]" />
+          <FileIcon extension={entry.extension} className="text-gray-600 ml-[14px]" />
         )}
         <span className="truncate">{entry.name}</span>
       </button>

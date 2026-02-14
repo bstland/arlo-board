@@ -94,10 +94,10 @@ function FolderTreeItem({
         className={cn(
           'flex items-center gap-1.5 w-full px-2 py-1.5 text-sm text-left transition-colors rounded-md',
           isDisabled
-            ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
+            ? 'text-gray-600 dark:text-gray-600 cursor-not-allowed'
             : isSelected
             ? 'bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300'
-            : 'hover:bg-gray-100 dark:hover:bg-[#313244] text-gray-700 dark:text-gray-300'
+            : 'hover:bg-gray-100 dark:hover:bg-[var(--color-surface)] text-gray-700 dark:text-gray-700'
         )}
         style={{ paddingLeft: `${depth * 20 + 8}px` }}
         disabled={isDisabled}
@@ -105,12 +105,12 @@ function FolderTreeItem({
       >
         <span onClick={handleToggle} className="shrink-0 flex items-center">
           {node.loading ? (
-            <Loader2 size={14} className="animate-spin text-gray-400" />
+            <Loader2 size={14} className="animate-spin text-gray-600" />
           ) : (
             <ChevronRight
               size={14}
               className={cn(
-                'transition-transform text-gray-400',
+                'transition-transform text-gray-600',
                 expanded && 'rotate-90',
                 (!node.children || node.children.length === 0) && !node.loading && 'invisible'
               )}
@@ -220,11 +220,11 @@ export function FolderPicker({ open, onClose, onSelect, entryPath, entryName, en
 
   return (
     <Dialog open={open} onClose={onClose} title={`Move "${entryName}"`} className="max-w-md">
-      <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
+      <p className="text-xs text-gray-500 dark:text-gray-600 mb-3">
         Select a destination folder:
       </p>
 
-      <div className="border border-gray-200 dark:border-[#313244] rounded-lg overflow-hidden">
+      <div className="border border-gray-200 dark:border-[var(--color-border)] rounded-lg overflow-hidden">
         <div className="max-h-[300px] overflow-y-auto p-1">
           {/* Root option */}
           <button
@@ -233,21 +233,21 @@ export function FolderPicker({ open, onClose, onSelect, entryPath, entryName, en
             className={cn(
               'flex items-center gap-1.5 w-full px-2 py-1.5 text-sm text-left transition-colors rounded-md',
               rootIsParent
-                ? 'text-gray-400 dark:text-gray-600 cursor-not-allowed'
+                ? 'text-gray-600 dark:text-gray-600 cursor-not-allowed'
                 : selected === ''
                 ? 'bg-violet-100 dark:bg-violet-900/40 text-violet-700 dark:text-violet-300'
-                : 'hover:bg-gray-100 dark:hover:bg-[#313244] text-gray-700 dark:text-gray-300'
+                : 'hover:bg-gray-100 dark:hover:bg-[var(--color-surface)] text-gray-700 dark:text-gray-700'
             )}
             title={rootIsParent ? 'Already in this folder' : 'Root folder'}
           >
             <span className="shrink-0 w-[14px]" />
-            <Home size={16} className="shrink-0 text-violet-500" />
+            <Home size={16} className="shrink-0 text-[var(--color-primary)]" />
             <span className="truncate font-medium">/ (root)</span>
           </button>
 
           {rootLoading ? (
             <div className="flex items-center justify-center py-8">
-              <Loader2 size={20} className="animate-spin text-gray-400" />
+              <Loader2 size={20} className="animate-spin text-gray-600" />
             </div>
           ) : (
             folders.map(folder => (
@@ -268,15 +268,15 @@ export function FolderPicker({ open, onClose, onSelect, entryPath, entryName, en
       </div>
 
       {selected !== null && (
-        <p className="text-xs text-gray-500 dark:text-gray-400 mt-2 truncate">
-          Destination: <span className="font-mono text-gray-700 dark:text-gray-300">{selected || '/'}</span>
+        <p className="text-xs text-gray-500 dark:text-gray-600 mt-2 truncate">
+          Destination: <span className="font-mono text-gray-700 dark:text-gray-700">{selected || '/'}</span>
         </p>
       )}
 
       <div className="flex justify-end gap-2 mt-4">
         <button
           onClick={onClose}
-          className="px-4 py-2 text-sm rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300"
+          className="px-4 py-2 text-sm rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-700"
         >
           Cancel
         </button>
@@ -287,7 +287,7 @@ export function FolderPicker({ open, onClose, onSelect, entryPath, entryName, en
             'px-4 py-2 text-sm rounded-lg text-white transition-colors',
             isMoving
               ? 'bg-violet-400 cursor-not-allowed'
-              : 'bg-violet-600 hover:bg-violet-700'
+              : 'bg-[var(--color-accent)] hover:opacity-90'
           )}
         >
           {isMoving ? (

@@ -22,7 +22,7 @@ function ImageThumbnail({ entry, onClick }: { entry: FileEntry; onClick: () => v
   return (
     <button
       onClick={onClick}
-      className="aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-[#313244] hover:border-violet-500 dark:hover:border-violet-400 transition-colors bg-gray-100 dark:bg-[#181825] group"
+      className="aspect-square rounded-lg overflow-hidden border border-gray-200 dark:border-[var(--color-border)] hover:border-violet-500 dark:hover:border-violet-400 transition-colors bg-gray-100 dark:bg-[var(--color-surface)] group"
     >
       {url ? (
         <img src={url} alt={entry.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" loading="lazy" />
@@ -32,7 +32,7 @@ function ImageThumbnail({ entry, onClick }: { entry: FileEntry; onClick: () => v
         </div>
       ) : (
         <div className="w-full h-full flex items-center justify-center">
-          <Loader2 className="animate-spin text-gray-400" size={24} />
+          <Loader2 className="animate-spin text-gray-600" size={24} />
         </div>
       )}
       <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-2 py-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -103,8 +103,8 @@ export function ImageGallery({ images }: ImageGalleryProps) {
   if (images.length === 0) return null;
 
   return (
-    <div className="p-6 bg-white dark:bg-[#1e1e2e] h-full overflow-y-auto">
-      <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 mb-4">
+    <div className="p-6 bg-white dark:bg-[var(--color-surface)] h-full overflow-y-auto">
+      <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-700 mb-4">
         Images ({images.length})
       </h3>
       <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">

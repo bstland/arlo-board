@@ -8,7 +8,7 @@ const PRIORITY_CONFIG: Record<TaskPriority, { label: string; color: string; bg: 
   critical: { label: 'Critical', color: 'text-red-400', bg: 'bg-red-500/20 border-red-500/30' },
   high:     { label: 'High',     color: 'text-orange-400', bg: 'bg-orange-500/20 border-orange-500/30' },
   medium:   { label: 'Medium',   color: 'text-yellow-400', bg: 'bg-yellow-500/20 border-yellow-500/30' },
-  low:      { label: 'Low',      color: 'text-gray-400', bg: 'bg-gray-500/20 border-gray-500/30' },
+  low:      { label: 'Low',      color: 'text-gray-600', bg: 'bg-gray-500/20 border-gray-500/30' },
 };
 
 interface TaskCardProps {
@@ -28,8 +28,8 @@ export function TaskCard({ task, onClick, isDragging }: TaskCardProps) {
     <div
       onClick={onClick}
       className={cn(
-        'group bg-[#1e1e2e] border border-[#313244] rounded-lg p-3 cursor-pointer',
-        'hover:border-[#45475a] hover:bg-[#232336] transition-all duration-150',
+        'group bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg p-3 cursor-pointer',
+        'hover:border-[var(--color-border)] hover:bg-[var(--color-surface)] transition-all duration-150',
         isDragging && 'shadow-xl shadow-violet-500/10 border-violet-500/40 rotate-[2deg] scale-105',
       )}
     >
@@ -37,7 +37,7 @@ export function TaskCard({ task, onClick, isDragging }: TaskCardProps) {
       <div className="flex items-start gap-2 mb-2">
         <GripVertical size={14} className="text-gray-600 mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity shrink-0" />
         <div className="flex-1 min-w-0">
-          <h4 className="text-sm font-medium text-gray-100 leading-snug line-clamp-2">
+          <h4 className="text-sm font-medium text-[var(--color-text)] leading-snug line-clamp-2">
             {task.title}
           </h4>
         </div>
@@ -56,7 +56,7 @@ export function TaskCard({ task, onClick, isDragging }: TaskCardProps) {
       {/* Bottom: assignee + due */}
       <div className="flex items-center gap-3 ml-[22px]">
         {task.assignee_name && (
-          <span className="flex items-center gap-1 text-xs text-gray-400">
+          <span className="flex items-center gap-1 text-xs text-gray-600">
             <User size={11} />
             {task.assignee_name}
           </span>

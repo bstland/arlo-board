@@ -63,9 +63,9 @@ export function AppShell() {
   const isFiles = viewMode === 'files';
 
   return (
-    <div className="h-screen flex flex-col bg-white dark:bg-[#1e1e2e] text-gray-900 dark:text-gray-100">
+    <div className="h-screen flex flex-col bg-white dark:bg-[var(--color-surface)] text-gray-900 dark:text-[var(--color-text)]">
       {/* Top nav bar */}
-      <div className="h-11 bg-gray-50 dark:bg-[#181825] border-b border-gray-200 dark:border-[#313244] px-4 flex items-center justify-between gap-2 shrink-0">
+      <div className="h-11 bg-gray-50 dark:bg-[var(--color-surface)] border-b border-gray-200 dark:border-[var(--color-border)] px-4 flex items-center justify-between gap-2 shrink-0">
         <div className="flex items-center gap-3 shrink-0">
           {/* Mobile menu button */}
           <button
@@ -77,12 +77,12 @@ export function AppShell() {
           >
             {sidebarOpen ? <X size={18} /> : <Menu size={18} />}
           </button>
-          <span className="text-sm font-bold text-violet-600 dark:text-[#cba6f7] select-none">Arlo Board</span>
+          <span className="text-sm font-bold text-[var(--color-primary)] dark:text-[#cba6f7] select-none">Arlo Board</span>
         </div>
 
         {/* Center tabs */}
         <div className="flex-1 min-w-0 flex items-center justify-center">
-          <div className="flex items-center bg-gray-200/50 dark:bg-[#1e1e2e] rounded-lg p-0.5 max-[400px]:overflow-x-auto max-[400px]:max-w-full max-[400px]:px-1">
+          <div className="flex items-center bg-gray-200/50 dark:bg-[var(--color-surface)] rounded-lg p-0.5 max-[400px]:overflow-x-auto max-[400px]:max-w-full max-[400px]:px-1">
           {NAV_TABS.map(tab => {
             const Icon = tab.icon;
             const isActive = viewMode === tab.key;
@@ -93,8 +93,8 @@ export function AppShell() {
                 className={cn(
                   'flex items-center gap-1.5 px-2 sm:px-3 py-1 rounded-md text-xs font-medium transition-all duration-150 whitespace-nowrap shrink-0',
                   isActive
-                    ? 'bg-white dark:bg-[#313244] text-gray-900 dark:text-gray-100 shadow-sm'
-                    : 'text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-300',
+                    ? 'bg-white dark:bg-[var(--color-surface)] text-gray-900 dark:text-[var(--color-text)] shadow-sm'
+                    : 'text-gray-500 dark:text-gray-500 hover:text-gray-700 dark:hover:text-gray-700',
                 )}
               >
                 <Icon size={13} />
@@ -108,11 +108,11 @@ export function AppShell() {
         {/* Search button */}
         <button
           onClick={() => setSearchOpen(true)}
-          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-md text-xs font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 hover:bg-gray-200/50 dark:hover:bg-[#313244] transition-colors shrink-0"
+          className="flex items-center gap-1.5 px-2 sm:px-3 py-1.5 rounded-md text-xs font-medium text-gray-500 hover:text-gray-700 dark:hover:text-gray-700 hover:bg-gray-200/50 dark:hover:bg-[var(--color-surface)] transition-colors shrink-0"
         >
           <Search size={14} />
           <span className="hidden sm:inline">Search</span>
-          <kbd className="hidden sm:inline ml-1 px-1.5 py-0.5 text-[10px] bg-gray-200 dark:bg-[#313244] rounded">⌘K</kbd>
+          <kbd className="hidden sm:inline ml-1 px-1.5 py-0.5 text-[10px] bg-gray-200 dark:bg-[var(--color-surface)] rounded">⌘K</kbd>
         </button>
       </div>
 
@@ -122,7 +122,7 @@ export function AppShell() {
           <>
             <div
               className={cn(
-                'shrink-0 border-r border-gray-200 dark:border-[#313244] transition-all duration-200',
+                'shrink-0 border-r border-gray-200 dark:border-[var(--color-border)] transition-all duration-200',
                 'hidden lg:block',
                 sidebarOpen ? 'lg:w-72' : 'lg:w-0 lg:border-r-0 lg:overflow-hidden',
               )}

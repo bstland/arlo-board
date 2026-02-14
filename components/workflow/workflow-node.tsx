@@ -54,18 +54,18 @@ export function WorkflowNode({ data, selected }: NodeProps<WorkflowNodeType_>) {
   return (
     <div
       className={cn(
-        'bg-[#1e1e2e] border border-[#313244] rounded-lg px-3 py-2 min-w-[180px] max-w-[220px]',
+        'bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg px-3 py-2 min-w-[180px] max-w-[220px]',
         'shadow-sm transition-all duration-150',
         selected && 'border-violet-500/60 shadow-violet-500/20',
-        'hover:border-[#45475a] hover:bg-[#232336]'
+        'hover:border-[var(--color-border)] hover:bg-[var(--color-surface)]'
       )}
     >
       <div className="flex items-start gap-2">
-        <div className="h-6 w-6 rounded-md bg-[#313244] flex items-center justify-center shrink-0">
-          <Icon size={13} className="text-gray-200" />
+        <div className="h-6 w-6 rounded-md bg-[var(--color-surface)] flex items-center justify-center shrink-0">
+          <Icon size={13} className="text-[var(--color-text)]" />
         </div>
         <div className="min-w-0 flex-1">
-          <div className="text-sm font-medium text-gray-100 leading-snug line-clamp-2">
+          <div className="text-sm font-medium text-[var(--color-text)] leading-snug line-clamp-2">
             {data.label}
           </div>
         </div>
@@ -81,7 +81,7 @@ export function WorkflowNode({ data, selected }: NodeProps<WorkflowNodeType_>) {
       </div>
       {data.schedule && (
         <div className="mt-2">
-          <span className="inline-flex items-center gap-1 text-[11px] text-gray-400 bg-[#313244]/70 border border-[#313244] rounded px-1.5 py-0.5">
+          <span className="inline-flex items-center gap-1 text-[11px] text-gray-600 bg-[var(--color-surface)]/70 border border-[var(--color-border)] rounded px-1.5 py-0.5">
             <Clock size={10} />
             {data.schedule}
           </span>

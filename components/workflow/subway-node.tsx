@@ -57,7 +57,7 @@ export function SubwayNode({ data, selected }: NodeProps<SubwayNodeType_>) {
   return (
     <div
       className={cn(
-        'relative rounded-2xl border border-[#2b2b3f] bg-[#151523]/90 px-3 py-2 shadow-md',
+        'relative rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] px-3 py-2 shadow-md',
         'min-w-[180px] max-w-[220px] transition-all duration-200',
         selected && 'border-[#89b4fa]/70 shadow-[#89b4fa]/20',
         data.isDimmed && 'opacity-45'
@@ -69,7 +69,7 @@ export function SubwayNode({ data, selected }: NodeProps<SubwayNodeType_>) {
         style={{ backgroundColor: data.primaryColor }}
       />
       <div className="flex items-start gap-2 pl-2">
-        <div className="h-8 w-8 rounded-xl bg-[#202033] border border-[#2b2b3f] flex items-center justify-center shrink-0">
+        <div className="h-8 w-8 rounded-xl bg-[var(--color-surface)] border border-[var(--color-border)] flex items-center justify-center shrink-0">
           <Icon size={14} className="text-[#e2e2f0]" />
         </div>
         <div className="min-w-0 flex-1">
@@ -81,7 +81,7 @@ export function SubwayNode({ data, selected }: NodeProps<SubwayNodeType_>) {
           )}
         </div>
         {data.badge && (
-          <span className="text-[10px] uppercase tracking-wide font-semibold text-[#b9bfd3] bg-[#1f1f30] border border-[#2b2b3f] rounded-full px-2 py-0.5">
+          <span className="text-[10px] uppercase tracking-wide font-semibold text-[#b9bfd3] bg-[var(--color-surface)] border border-[var(--color-border)] rounded-full px-2 py-0.5">
             {data.badge}
           </span>
         )}

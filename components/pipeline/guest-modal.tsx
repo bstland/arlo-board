@@ -137,8 +137,8 @@ export function GuestModal({ guest, open, onClose }: GuestModalProps) {
     }
   };
 
-  const inputCls = 'w-full px-3 py-2 rounded-lg border border-[#313244] bg-[#313244] text-gray-100 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 placeholder:text-gray-500';
-  const labelCls = 'block text-xs font-medium text-gray-400 mb-1';
+  const inputCls = 'w-full px-3 py-2 rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)] text-[var(--color-text)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)] placeholder:text-gray-500';
+  const labelCls = 'block text-xs font-medium text-gray-600 mb-1';
 
   return (
     <Dialog open={open} onClose={onClose} title="Edit Guest" className="max-w-3xl w-full max-h-[90vh] overflow-y-auto">
@@ -353,7 +353,7 @@ export function GuestModal({ guest, open, onClose }: GuestModalProps) {
           <span>Updated: {new Date(guest.updated_at).toLocaleString()}</span>
         </div>
 
-        <div className="flex items-center justify-between pt-2 border-t border-[#313244]">
+        <div className="flex items-center justify-between pt-2 border-t border-[var(--color-border)]">
           <button
             onClick={handleDelete}
             disabled={deleting}
@@ -361,7 +361,7 @@ export function GuestModal({ guest, open, onClose }: GuestModalProps) {
               'flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-colors',
               confirmDelete
                 ? 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
-                : 'text-gray-400 hover:text-red-400 hover:bg-red-500/10'
+                : 'text-gray-600 hover:text-red-400 hover:bg-red-500/10'
             )}
           >
             {deleting ? <Loader2 size={14} className="animate-spin" /> : <Trash2 size={14} />}
@@ -370,14 +370,14 @@ export function GuestModal({ guest, open, onClose }: GuestModalProps) {
           <div className="flex gap-2">
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-lg text-sm text-gray-400 hover:bg-[#313244] transition-colors"
+              className="px-4 py-2 rounded-lg text-sm text-gray-600 hover:bg-[var(--color-surface)] transition-colors"
             >
               Cancel
             </button>
             <button
               onClick={handleSave}
               disabled={saving || !form.host_name.trim() || !form.podcast_name.trim()}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 hover:bg-blue-700 text-white disabled:opacity-50 transition-colors"
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium bg-[var(--color-accent)] hover:opacity-90 text-white disabled:opacity-50 transition-colors"
             >
               {saving ? <Loader2 size={14} className="animate-spin" /> : <Save size={14} />}
               Save

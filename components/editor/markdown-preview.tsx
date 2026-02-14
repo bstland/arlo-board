@@ -67,10 +67,10 @@ interface MarkdownPreviewProps {
 export function MarkdownPreview({ content, basePath, onNavigate }: MarkdownPreviewProps) {
   return (
     <div className="prose prose-sm dark:prose-invert max-w-none p-6 overflow-y-auto h-full
-      prose-headings:text-gray-900 dark:prose-headings:text-gray-100
-      prose-a:text-violet-600 dark:prose-a:text-violet-400
+      prose-headings:text-gray-900 dark:prose-headings:text-[var(--color-text)]
+      prose-a:text-[var(--color-primary)] dark:prose-a:text-[var(--color-primary)]
       prose-code:bg-gray-100 dark:prose-code:bg-gray-800 prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-      prose-pre:bg-gray-900 dark:prose-pre:bg-[#181825] prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-[#313244]
+      prose-pre:bg-gray-900 dark:prose-pre:bg-[var(--color-surface)] prose-pre:border prose-pre:border-gray-200 dark:prose-pre:border-[var(--color-border)]
       prose-img:rounded-lg prose-img:shadow-sm
       prose-table:border-collapse
       prose-th:border prose-th:border-gray-300 dark:prose-th:border-gray-600 prose-th:px-3 prose-th:py-2 prose-th:bg-gray-50 dark:prose-th:bg-gray-800
@@ -97,7 +97,7 @@ export function MarkdownPreview({ content, basePath, onNavigate }: MarkdownPrevi
                     const fullPath = href.startsWith('/') ? href : `${parentDir}/${href}`;
                     onNavigate?.(fullPath);
                   }}
-                  className="text-violet-600 dark:text-violet-400 hover:underline cursor-pointer inline-flex items-center gap-1"
+                  className="text-[var(--color-primary)] dark:text-[var(--color-primary)] hover:underline cursor-pointer inline-flex items-center gap-1"
                 >
                   {children}
                 </button>
@@ -117,7 +117,7 @@ export function MarkdownPreview({ content, basePath, onNavigate }: MarkdownPrevi
                   type="checkbox"
                   checked={props.checked}
                   readOnly
-                  className="mr-1 rounded accent-violet-600"
+                  className="mr-1 rounded accent-[var(--color-primary)]"
                 />
               );
             }

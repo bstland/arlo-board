@@ -18,12 +18,12 @@ const TYPE_CONFIG = {
   task: {
     icon: LayoutGrid,
     label: 'Task',
-    color: 'text-violet-500 bg-violet-500/10',
+    color: 'text-[var(--color-primary)] bg-violet-500/10',
   },
   comment: {
     icon: MessageSquare,
     label: 'Comment',
-    color: 'text-blue-500 bg-blue-500/10',
+    color: 'text-[var(--color-primary)] bg-blue-500/10',
   },
   file: {
     icon: FileText,
@@ -169,22 +169,22 @@ export function GlobalSearch({ open, onClose, onNavigate }: GlobalSearchProps) {
       <div className="relative -mt-4">
         {/* Search input */}
         <div className="relative mb-4">
-          <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-600" />
           <input
             type="text"
             value={query}
             onChange={e => setQuery(e.target.value)}
             placeholder="Search tasks, files, comments…"
             autoFocus
-            className="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 dark:border-[#313244] bg-white dark:bg-[#1e1e2e] text-gray-900 dark:text-gray-100 text-base focus:outline-none focus:ring-2 focus:ring-violet-500"
+            className="w-full pl-10 pr-10 py-3 rounded-lg border border-gray-300 dark:border-[var(--color-border)] bg-white dark:bg-[var(--color-surface)] text-gray-900 dark:text-[var(--color-text)] text-base focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]"
           />
           {loading && (
-            <Loader2 size={18} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 animate-spin" />
+            <Loader2 size={18} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 animate-spin" />
           )}
           {!loading && query && (
             <button
               onClick={() => setQuery('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-600"
             >
               <X size={18} />
             </button>
@@ -194,11 +194,11 @@ export function GlobalSearch({ open, onClose, onNavigate }: GlobalSearchProps) {
         {/* Results */}
         <div className="max-h-[400px] overflow-y-auto">
           {query.length < 2 ? (
-            <p className="text-sm text-gray-400 text-center py-8">
+            <p className="text-sm text-gray-600 text-center py-8">
               Type at least 2 characters to search
             </p>
           ) : allResults.length === 0 && !loading ? (
-            <p className="text-sm text-gray-400 text-center py-8">
+            <p className="text-sm text-gray-600 text-center py-8">
               No results found for &ldquo;{query}&rdquo;
             </p>
           ) : (
@@ -230,7 +230,7 @@ export function GlobalSearch({ open, onClose, onNavigate }: GlobalSearchProps) {
                               'w-full text-left px-3 py-2 rounded-md transition-colors',
                               isSelected 
                                 ? 'bg-violet-500/10 dark:bg-violet-500/20' 
-                                : 'hover:bg-gray-100 dark:hover:bg-[#313244]'
+                                : 'hover:bg-gray-100 dark:hover:bg-[var(--color-surface)]'
                             )}
                           >
                             <div className="flex items-start gap-2">
@@ -238,12 +238,12 @@ export function GlobalSearch({ open, onClose, onNavigate }: GlobalSearchProps) {
                                 <Icon size={14} />
                               </span>
                               <div className="flex-1 min-w-0">
-                                <div className="text-sm font-medium text-gray-900 dark:text-gray-100 truncate">
+                                <div className="text-sm font-medium text-gray-900 dark:text-[var(--color-text)] truncate">
                                   {result.title}
                                 </div>
-                                <div className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                                <div className="text-xs text-gray-500 dark:text-gray-600 truncate">
                                   {result.type === 'comment' && result.parentTitle && (
-                                    <span className="text-violet-500">Task: {result.parentTitle} · </span>
+                                    <span className="text-[var(--color-primary)]">Task: {result.parentTitle} · </span>
                                   )}
                                   {result.snippet}
                                 </div>
@@ -262,10 +262,10 @@ export function GlobalSearch({ open, onClose, onNavigate }: GlobalSearchProps) {
 
         {/* Keyboard hints */}
         {allResults.length > 0 && (
-          <div className="flex items-center justify-center gap-4 mt-4 pt-3 border-t border-gray-200 dark:border-[#313244] text-xs text-gray-400">
-            <span><kbd className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-[#313244]">↑↓</kbd> Navigate</span>
-            <span><kbd className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-[#313244]">Enter</kbd> Select</span>
-            <span><kbd className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-[#313244]">Esc</kbd> Close</span>
+          <div className="flex items-center justify-center gap-4 mt-4 pt-3 border-t border-gray-200 dark:border-[var(--color-border)] text-xs text-gray-600">
+            <span><kbd className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-[var(--color-surface)]">↑↓</kbd> Navigate</span>
+            <span><kbd className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-[var(--color-surface)]">Enter</kbd> Select</span>
+            <span><kbd className="px-1.5 py-0.5 rounded bg-gray-100 dark:bg-[var(--color-surface)]">Esc</kbd> Close</span>
           </div>
         )}
       </div>
